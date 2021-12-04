@@ -7,9 +7,16 @@ import (
 
 func main() {
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", home)
-	mux.HandleFunc("/create-room", createRoom)
-	mux.HandleFunc("/create-user", createuser)
+	mux.HandleFunc("/", homeHandler)
+	mux.HandleFunc("/create-room", createRoomHandler)
+	mux.HandleFunc("/create-user", createUserHandler)
+	mux.HandleFunc("/sync-room-users", syncRoomUsersHandler)
+	mux.HandleFunc("/send-message", sendMessageHandler)
+	mux.HandleFunc("/get-room", getRoomHandler)
+	mux.HandleFunc("/get-message", getMessageHandler)
+	// mux.HandleFunc("/get-messages", getMessageHandler)
+	// mux.HandleFunc("/get-room-messages", getMessageHandler)
+	mux.HandleFunc("/read-message", readMessageHandler)
 
 	log.Println("Запуск веб-сервера на http://127.0.0.1:4000")
 	err := http.ListenAndServe(":4000", mux)
