@@ -32,5 +32,9 @@ func readMessageHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	w.Write([]byte(`{"id": 1}`))
+	if data.UserId == 0 {
+		http.Error(w, `Param "userId" must be set and not empty.`, http.StatusBadRequest)
+		return
+	}
+	w.Write([]byte(`{"result": true}`))
 }
