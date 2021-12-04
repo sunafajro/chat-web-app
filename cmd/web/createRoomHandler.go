@@ -1,6 +1,9 @@
 package main
 
-import "net/http"
+import (
+	"fmt"
+	"net/http"
+)
 
 func createRoomHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -9,5 +12,6 @@ func createRoomHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method "+r.Method+" not allowed", http.StatusMethodNotAllowed)
 		return
 	}
-	w.Write([]byte(`{"id": 1}`))
+	room := createRoom()
+	w.Write([]byte(fmt.Sprintf(`{"id": %d}`, room.Id)))
 }

@@ -6,6 +6,8 @@ import (
 )
 
 func main() {
+	checkDbConnection()
+
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", homeHandler)
 	mux.HandleFunc("/create-room", createRoomHandler)
